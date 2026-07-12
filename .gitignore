@@ -1,0 +1,12 @@
+# Never commit private SSH keys or host records
+.ssh/id_*
+.ssh/*.pem
+.ssh/known_hosts
+.ssh/known_hosts.*
+.ssh/authorized_keys
+
+# macOS cruft
+.DS_Store
+
+# Stow backup dirs, if ever created here
+.dotfiles_backup_*
