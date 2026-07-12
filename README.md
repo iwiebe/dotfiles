@@ -107,6 +107,33 @@ brew bundle cleanup --file=~/dotfiles/Brewfile        # preview
 brew bundle cleanup --file=~/dotfiles/Brewfile --force # actually remove
 ```
 
+## Optional / day-two apps
+
+Core apps live in the `Brewfile` and install automatically during bootstrap.
+Situational or heavy apps (Xcode, ProPresenter, etc.) are kept out of the core
+install and handled by `optional.sh`, which shows a menu so you can install just
+the ones you want on a given machine — no need to remember install commands:
+
+```bash
+~/dotfiles/optional.sh          # menu: pick numbers (e.g. "1 3 5"), or "a" for all
+~/dotfiles/optional.sh --all    # install everything, no prompt
+~/dotfiles/optional.sh --list   # print the catalog and exit
+DRY_RUN=1 ~/dotfiles/optional.sh --all   # show what would run, install nothing
+```
+
+To add an app, append one line to the `APPS` list at the top of `optional.sh`
+(`cask|<cask-name>|<label>` for casks, `mas|<id>|<label>` for App Store apps).
+
+**Xcode notes:** it's installed via `mas`, so you must be signed into the App
+Store and have "gotten" Xcode under that Apple ID at least once — `mas` can't
+first-acquire apps. After it installs, finish setup with:
+
+```bash
+sudo xcodebuild -license accept
+sudo xcode-select -s /Applications/Xcode.app
+xcodebuild -runFirstLaunch
+```
+
 ## Adding a new dotfile
 
 1. Move the real file into the repo, preserving its path relative to `~`:
