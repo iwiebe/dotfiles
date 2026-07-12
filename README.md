@@ -16,7 +16,7 @@ Everything targets `~`, so the repo layout mirrors the home directory:
 ## Set up a new machine
 
 ```bash
-git clone git@github.com:USERNAME/dotfiles.git ~/dotfiles
+git clone git@github.com:iwiebe/dotfiles.git ~/dotfiles
 ~/dotfiles/bootstrap.sh
 ```
 
@@ -28,6 +28,24 @@ git clone git@github.com:USERNAME/dotfiles.git ~/dotfiles
 4. Symlink everything into `~` with `stow --no-folding` (so `~/.ssh` stays a
    real directory and only `~/.ssh/config` is symlinked).
 5. Install everything in the `Brewfile` via `brew bundle`.
+
+### Git-free install
+
+Don't have (or want) Git on the new machine? Download the repo as a tarball
+straight into `~/dotfiles`, then run bootstrap. Because the files are stowed
+into `~` (not extracted there directly), keep the whole tree intact — including
+`bootstrap.sh` and the `Brewfile`:
+
+```bash
+mkdir -p ~/dotfiles
+curl -#L https://github.com/iwiebe/dotfiles/tarball/main \
+  | tar -xzv -C ~/dotfiles --strip-components 1 --exclude={README.md,.gitignore}
+~/dotfiles/bootstrap.sh
+```
+
+Note this gives you a plain directory with no `.git`, so you can't `git pull`
+updates later. To re-sync, re-run the command above (it overwrites the files),
+or install Git and `git clone` as shown above for a proper working copy.
 
 ## Day-to-day
 
