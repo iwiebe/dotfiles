@@ -6,6 +6,8 @@ brew "gh"
 brew "googleworkspace-cli"
 # Agent multiplexer that lives in your terminal
 brew "herdr", restart_service: :changed
+# Lightweight and flexible command-line JSON processor (required by statusline.sh)
+brew "jq"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node@24", link: true
 # Fast, disk space efficient package manager

@@ -10,3 +10,10 @@
 
 # Stow backup dirs, if ever created here
 .dotfiles_backup_*
+
+# .claude: only track settings.json and statusline.sh.
+# Everything else (history, sessions, projects, caches) is machine-local and
+# may contain prompt/session content — never commit it.
+.claude/*
+!.claude/settings.json
+!.claude/statusline.sh

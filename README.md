@@ -5,13 +5,23 @@ Everything targets `~`, so the repo layout mirrors the home directory:
 
 ```
 ~/dotfiles/
-├── .zshrc          # zsh config
-├── .gitconfig      # git config
-├── .ssh/config     # ssh client config (keys are NOT tracked)
-├── Brewfile        # Homebrew formulae, casks, and taps
-├── bootstrap.sh    # one-shot machine setup
+├── .zshrc                  # zsh config
+├── .gitconfig              # git config
+├── .ssh/config             # ssh client config (keys are NOT tracked)
+├── .claude/
+│   ├── settings.json       # Claude Code settings
+│   └── statusline.sh       # Claude Code statusline (context % + rate limits)
+├── Brewfile                # Homebrew formulae, casks, and taps
+├── optional.sh             # interactive installer for optional day-two apps
+├── bootstrap.sh            # one-shot machine setup
 └── .gitignore
 ```
+
+> Only `settings.json` and `statusline.sh` are tracked under `.claude/`. The rest
+> of `~/.claude` (history, sessions, projects, caches) is machine-local and
+> git-ignored. `statusline.sh` needs `jq` (in the `Brewfile`); to actually use it,
+> `settings.json` must include a `statusLine` block pointing at
+> `~/.claude/statusline.sh`.
 
 ## Set up a new machine
 

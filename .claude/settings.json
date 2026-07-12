@@ -1,0 +1,6 @@
+{
+  "enabledPlugins": {},
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "tui": "fullscreen"
+}
