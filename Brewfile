@@ -10,6 +10,8 @@ brew "herdr", restart_service: :changed
 brew "node@24", link: true
 # Fast, disk space efficient package manager
 brew "pnpm"
+# Pretty, minimal and fast ZSH prompt
+brew "pure"
 # Terminal multiplexer
 brew "tmux"
 # Desktop password and login vault
