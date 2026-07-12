@@ -1,0 +1,14 @@
+# Skillfile — global (user-level) agent skills, reinstalled by skills.sh.
+#
+# One skill per line:  <package>  [skill-name]
+#   <package>    a repo URL or owner/repo passed to `skills add`
+#   [skill-name] optional; maps to `skills add --skill <name>` to pick a single
+#                skill from a repo that contains several
+# Blank lines and lines starting with # are ignored. Inline # comments are OK.
+
+https://github.com/anthropics/skills          frontend-design
+https://github.com/anthropics/skills          skill-creator
+https://github.com/mattpocock/skills
+https://github.com/microsoft/playwright-cli   playwright-cli
+https://github.com/addyosmani/agent-skills
+https://github.com/egonex-ai/understand-anything

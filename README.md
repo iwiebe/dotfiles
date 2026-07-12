@@ -117,6 +117,34 @@ brew bundle cleanup --file=~/dotfiles/Brewfile        # preview
 brew bundle cleanup --file=~/dotfiles/Brewfile --force # actually remove
 ```
 
+## Agent skills
+
+Global (user-level) [agent skills](https://github.com/vercel-labs/skills) are
+declared in `Skillfile` — the Brewfile equivalent for skills — and installed by
+`skills.sh`. `bootstrap.sh` runs it automatically after `brew bundle`.
+
+```bash
+~/dotfiles/skills.sh            # install everything in Skillfile (global)
+~/dotfiles/skills.sh --list     # print the parsed list and exit
+DRY_RUN=1 ~/dotfiles/skills.sh   # show the commands, install nothing
+```
+
+Add a skill by appending a line to `Skillfile`:
+
+```
+<package>  [skill-name]
+```
+
+`<package>` is a repo URL or `owner/repo`; the optional second field maps to
+`skills add --skill <name>` to pick one skill from a multi-skill repo.
+
+Notes:
+- Skills install **globally** (`skills add -g`) so they apply in every project —
+  that's why they belong in dotfiles. For skills you only want in one repo, run
+  `npx skills add <pkg>` (no `-g`) there instead; that writes a project-level
+  `skills-lock.json` you commit to *that* repo.
+- Requires `npx` (Node), which the `Brewfile` installs (`node@24`).
+
 ## Optional / day-two apps
 
 Core apps live in the `Brewfile` and install automatically during bootstrap.

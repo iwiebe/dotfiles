@@ -46,4 +46,8 @@ stow --no-folding --target="$HOME" .
 echo "==> Installing packages from Brewfile..."
 brew bundle install --file="$DOTFILES_DIR/Brewfile"
 
+echo "==> Installing global agent skills..."
+# Non-fatal: a failing/unreachable skill repo shouldn't abort the whole setup.
+"$DOTFILES_DIR/skills.sh" || echo "warning: some skills failed to install (see above)"
+
 echo "==> Done! Originals (if any) backed up to $BACKUP_DIR"
