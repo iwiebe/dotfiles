@@ -1,0 +1,24 @@
+# stow ignore list for this dotfiles package.
+# NOTE: the presence of this file REPLACES stow's built-in default ignore list,
+# so the usual VCS/editor patterns are re-listed here explicitly.
+
+# Version control & editor cruft
+\.git
+\.gitignore
+\.gitmodules
+.+~
+\.DS_Store
+
+# Repo docs, manifests, and provisioning scripts — not dotfiles, keep out of $HOME
+README.*
+Brewfile
+Pluginfile
+Skillfile
+bootstrap\.sh
+optional\.sh
+plugins\.sh
+skills\.sh
+
+# App-managed: bootstrap cp-seeds this instead of symlinking (plugins.sh / the
+# claude CLI rewrite it in place), so it must never become a repo symlink.
+settings\.json
