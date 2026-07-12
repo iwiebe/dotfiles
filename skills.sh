@@ -14,6 +14,11 @@ set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SKILLFILE="$DIR/Skillfile"
 
+# Agents to install skills into (comma-separated). Scoping avoids fanning out to
+# ~70 agent tools and the "does not support global installation" noise from ones
+# like PromptScript. Override, e.g.:  AGENTS=claude-code,zed ./skills.sh
+AGENTS="${AGENTS:-claude-code}"
+
 [ -f "$SKILLFILE" ] || { echo "No Skillfile at $SKILLFILE" >&2; exit 1; }
 command -v npx >/dev/null 2>&1 || {
   echo "npx (Node.js) not found — run bootstrap.sh first." >&2
@@ -30,7 +35,9 @@ run() {
 
 # Each line: first field = package, optional second field = skill name.
 # `read` splits on whitespace; `_` swallows any trailing inline comment.
-while read -r pkg skill _ || [ -n "$pkg" ]; do
+# Read the Skillfile on FD 3, not stdin — otherwise `npx skills` inherits our
+# stdin and eats the remaining lines (and can't prompt interactively).
+while read -r pkg skill _ <&3 || [ -n "$pkg" ]; do
   case "$pkg" in
     ''|\#*) continue ;;   # blank line or full-line comment
   esac
@@ -45,12 +52,12 @@ while read -r pkg skill _ || [ -n "$pkg" ]; do
   fi
 
   if [ -n "$skill" ]; then
-    echo "==> $pkg  --skill $skill"
-    run npx --yes skills add -g "$pkg" --skill "$skill" -y
+    echo "==> $pkg  --skill $skill  (agents: $AGENTS)"
+    run npx --yes skills add -g "$pkg" --skill "$skill" --agent "$AGENTS" -y
   else
-    echo "==> $pkg"
-    run npx --yes skills add -g "$pkg" -y
+    echo "==> $pkg  (agents: $AGENTS)"
+    run npx --yes skills add -g "$pkg" --agent "$AGENTS" -y
   fi
-done < "$SKILLFILE"
+done 3< "$SKILLFILE"
 
 [ "${1:-}" = "--list" ] || echo "==> Done."

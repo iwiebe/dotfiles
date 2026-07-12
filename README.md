@@ -144,6 +144,10 @@ Notes:
   `npx skills add <pkg>` (no `-g`) there instead; that writes a project-level
   `skills-lock.json` you commit to *that* repo.
 - Requires `npx` (Node), which the `Brewfile` installs (`node@24`).
+- Installs are scoped to Claude Code only (`--agent claude-code`) to avoid the
+  fan-out to ~70 agent tools and the "does not support global installation" noise
+  from ones like PromptScript. Target others with, e.g.,
+  `AGENTS=claude-code,zed ~/dotfiles/skills.sh`.
 
 ## Optional / day-two apps
 
