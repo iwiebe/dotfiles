@@ -10,3 +10,6 @@
 
 marketplace addyosmani/agent-skills
 plugin      agent-skills@addy-agent-skills
+
+marketplace iwiebe/iwiebe-skills
+plugin      iwiebe@iwiebe-skills
