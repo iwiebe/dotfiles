@@ -40,8 +40,23 @@ fi
 
 echo "==> Stowing dotfiles..."
 cd "$DOTFILES_DIR"
-# --no-folding keeps ~/.ssh as a real directory and only links files inside it.
-stow --no-folding --target="$HOME" .
+# --no-folding keeps ~/.ssh and ~/.claude as real directories and only links
+# files inside them. --ignore excludes Claude Code's settings.json: it's an
+# app-mutated file (plugins.sh and the `claude` CLI rewrite it in place), so a
+# symlink would push machine-generated plugin state back into the repo. We seed
+# it as a plain copy below instead.
+stow --no-folding --ignore='settings\.json' --target="$HOME" .
+
+echo "==> Seeding Claude Code settings (only if absent)..."
+# Seed the template on first run; never clobber a live settings.json, whose
+# enabledPlugins/extraKnownMarketplaces are populated by plugins.sh afterwards.
+mkdir -p "$HOME/.claude"
+if [ ! -e "$HOME/.claude/settings.json" ]; then
+  cp "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
+  echo "Seeded ~/.claude/settings.json from template"
+else
+  echo "~/.claude/settings.json already exists — left untouched"
+fi
 
 echo "==> Installing packages from Brewfile..."
 brew bundle install --file="$DOTFILES_DIR/Brewfile"
