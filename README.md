@@ -149,6 +149,36 @@ Notes:
   from ones like PromptScript. Target others with, e.g.,
   `AGENTS=claude-code,zed ~/dotfiles/skills.sh`.
 
+## Claude Code plugins
+
+Some sources ship as full [Claude Code plugins](https://docs.claude.com/en/docs/claude-code/plugins)
+(agents + commands + hooks + skills) and get invoked with a `plugin:skill`
+namespace, avoiding the flat-`~/.claude/skills/` name collisions the plain
+`skills` CLI is prone to. Those are declared in `Pluginfile` and installed by
+`plugins.sh` (user scope). `bootstrap.sh` runs it after `skills.sh`.
+
+```bash
+~/dotfiles/plugins.sh            # add marketplaces, then install plugins
+~/dotfiles/plugins.sh --list     # print the parsed list and exit
+DRY_RUN=1 ~/dotfiles/plugins.sh   # show the commands, install nothing
+```
+
+`Pluginfile` lines:
+
+```
+marketplace <github-repo-or-url>   # register a marketplace
+plugin       <name>@<marketplace>  # install a plugin from it
+```
+
+Notes:
+- Needs the `claude` CLI (the `claude-code` cask in the `Brewfile`).
+- Plugin installs clone over **SSH**. The `url."https://github.com/".insteadOf`
+  rewrite in `.gitconfig` redirects github SSH → HTTPS so the clone succeeds
+  without a `github.com` host key (our `~/.ssh/config` uses `UserKnownHostsFile
+  /dev/null`, and the plugin installer forces strict host-key checking).
+- Prefer a **plugin** over the flat `Skillfile` when a repo offers one and you
+  want namespacing — e.g. `addyosmani/agent-skills` lives here, not in `Skillfile`.
+
 ## Optional / day-two apps
 
 Core apps live in the `Brewfile` and install automatically during bootstrap.

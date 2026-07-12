@@ -50,4 +50,7 @@ echo "==> Installing global agent skills..."
 # Non-fatal: a failing/unreachable skill repo shouldn't abort the whole setup.
 "$DOTFILES_DIR/skills.sh" || echo "warning: some skills failed to install (see above)"
 
+echo "==> Installing Claude Code plugins..."
+"$DOTFILES_DIR/plugins.sh" || echo "warning: some plugins failed to install (see above)"
+
 echo "==> Done! Originals (if any) backed up to $BACKUP_DIR"

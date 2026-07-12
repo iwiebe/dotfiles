@@ -1,5 +1,5 @@
 [credential]
-	helper =
+	helper = 
 	helper = /usr/local/share/gcm-core/git-credential-manager
 [credential "https://dev.azure.com"]
 	useHttpPath = true
@@ -9,5 +9,7 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = Isaac Wiebe
+	name = iwiebe
 	email = isaacwiebe@me.com
+[url "https://github.com/"]
+	insteadOf = git@github.com:

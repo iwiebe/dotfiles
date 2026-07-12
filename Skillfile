@@ -10,5 +10,6 @@ https://github.com/anthropics/skills          frontend-design
 https://github.com/anthropics/skills          skill-creator
 https://github.com/mattpocock/skills
 https://github.com/microsoft/playwright-cli   playwright-cli
-https://github.com/addyosmani/agent-skills
+# addyosmani/agent-skills moved to Pluginfile (installed as the namespaced
+# `agent-skills` plugin instead of flat skills).
 https://github.com/egonex-ai/understand-anything

@@ -1,0 +1,12 @@
+# Pluginfile — Claude Code plugins, installed by plugins.sh at user scope.
+#
+# Lines:
+#   marketplace <github-repo-or-url>   register a marketplace source
+#   plugin      <name>@<marketplace>   install a plugin from a registered market
+# Marketplaces are added before plugins. Blank lines and # comments are ignored.
+#
+# Note: plugin installs clone over SSH; the url.insteadOf rewrite in .gitconfig
+# redirects github SSH -> HTTPS so this works without a github host key.
+
+marketplace addyosmani/agent-skills
+plugin      agent-skills@addy-agent-skills
