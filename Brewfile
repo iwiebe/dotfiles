@@ -34,6 +34,8 @@ cask "github"
 cask "google-chrome"
 # Graphically shows disk usage within a file system
 cask "grandperspective"
+# Menu bar manager
+cask "jordanbaird-ice"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Control your tools with a few keystrokes
@@ -46,4 +48,6 @@ cask "vlc"
 cask "zed"
 # Gecko based web browser
 cask "zen"
+# Keep your Mac awake
+mas "Amphetamine", id: 937984704
 npm "corepack"

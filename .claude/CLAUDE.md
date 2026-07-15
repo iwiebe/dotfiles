@@ -6,9 +6,13 @@ Personal defaults across all projects. A project-level CLAUDE.md overrides these
 - **Never `git push` to a remote unless I explicitly tell you to in that turn.**
   Committing locally when I ask is fine; pushing always needs an explicit,
   per-instance instruction. Never push as a "finishing" step.
-- When a change is ready to commit, **suggest a commit message**, then use
-  **AskUserQuestion** to let me choose: **Commit** (as written), **Edit message**,
-  or **Hold**. Don't run `git commit` until I pick.
+- **Don't ask about committing until I bring it up.** When a change is done,
+  summarize it and stop — I want room to test, tweak, and iterate first. Only
+  when I say I'm ready to commit (or ask for a commit), use **AskUserQuestion**
+  to let me choose: **Commit**, **Edit message**, or **Hold** — and put the full
+  proposed commit message **inside the dialog itself** (e.g., as the Commit
+  option's preview/description), not only in chat text above it. Don't run
+  `git commit` until I pick.
 - Don't commit directly to `main` on shared repos without asking — prefer a branch.
 
 ## Preferences
