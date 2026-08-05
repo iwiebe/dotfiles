@@ -36,6 +36,17 @@ gwa() {
   git worktree add -b "$branch" "$dir" && cd "$dir"
 }
 
+gwc() {
+  local branch="$1"
+  local dir="$HOME/src/GitHub/worktrees/$branch"
+  if git show-ref --verify --quiet "refs/heads/$branch"; then
+    git worktree add "$dir" "$branch" && cd "$dir"
+  else
+    git fetch origin "$branch" &&
+      git worktree add --track -b "$branch" "$dir" "origin/$branch" && cd "$dir"
+  fi
+}
+
 gwr() {
   local branch="$1"
   local dir="$HOME/src/GitHub/worktrees/$branch"

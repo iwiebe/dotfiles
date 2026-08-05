@@ -20,3 +20,8 @@ Personal defaults across all projects. A project-level CLAUDE.md overrides these
   clearly requires it.
 - Match the surrounding code's conventions; don't add new tools or dependencies
   without asking. Confirm before anything destructive or outward-facing.
+
+## Dev server
+- **Assume I already have the dev server running on port 3000.** Don't start a
+  fresh server on 3000. Either start yours on a different port (e.g. 3001) OR ask
+  whether you can use my running instance on 3000. Never assume 3000 is free.
