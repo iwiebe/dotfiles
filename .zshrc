@@ -29,6 +29,9 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 # Claude Alias
 alias clauded="claude --allow-dangerously-skip-permissions"
 
+# Prefer pnpm; use `command npm` for the rare repo that needs real npm
+alias npm="pnpm"
+
 # Git worktree helpers
 gwa() {
   local branch="$1"
