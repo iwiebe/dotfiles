@@ -25,19 +25,39 @@ Everything targets `~`, so the repo layout mirrors the home directory:
 
 ## Set up a new machine
 
+First: `xcode-select --install` (a fresh macOS has no `git`), and **sign into the
+App Store** — the `Brewfile` includes a `mas` app, and `mas` can't first-acquire
+an app the Apple ID has never "gotten". That failure aborts `brew bundle`, and
+bootstrap runs under `set -e`, so skills and plugins never get installed.
+
 ```bash
-git clone git@github.com:iwiebe/dotfiles.git ~/dotfiles
+git clone https://github.com/iwiebe/dotfiles.git ~/dotfiles
 ~/dotfiles/bootstrap.sh
 ```
+
+> Clone over **HTTPS**, not SSH. A new machine has no SSH key yet (keys are never
+> tracked here), and the `url."https://github.com/".insteadOf` rewrite in
+> `.gitconfig` that would redirect an SSH URL isn't installed until bootstrap
+> stows it. The repo is public, so HTTPS needs no auth.
 
 `bootstrap.sh` will:
 
 1. Install Homebrew if it's missing.
-2. Install GNU Stow.
-3. Back up any existing real dotfiles to `~/.dotfiles_backup_<timestamp>/`.
-4. Symlink everything into `~` with `stow --no-folding` (so `~/.ssh` stays a
+2. Append the `brew shellenv` line to `~/.zprofile` if absent, so `brew` is on
+   the PATH in new shells — `.zshrc` calls `brew --prefix` for `pure`'s `fpath`,
+   and Homebrew's installer only prints that line rather than writing it.
+3. Install GNU Stow.
+4. Back up any existing real dotfiles to `~/.dotfiles_backup_<timestamp>/`.
+5. Symlink everything into `~` with `stow --no-folding` (so `~/.ssh` stays a
    real directory and only `~/.ssh/config` is symlinked).
-5. Install everything in the `Brewfile` via `brew bundle`.
+6. Seed `~/.claude/settings.json` from the template if it doesn't exist yet.
+7. Install everything in the `Brewfile` via `brew bundle`.
+8. Install global agent skills (`skills.sh`) and Claude Code plugins
+   (`plugins.sh`) — both non-fatal.
+
+Afterward, generate an SSH key (`ssh-keygen -t ed25519`) and add it to GitHub and
+any hosts in `.ssh/config`; log into the `claude` CLI and re-run `plugins.sh` if
+it was unauthenticated; then run `optional.sh` for day-two apps.
 
 ### Git-free install
 
@@ -97,9 +117,11 @@ git commit -m "Update Brewfile"
 git push
 ```
 
-> **Note:** `brew bundle dump` records *everything* Homebrew currently knows
-> about — including packages pulled in as dependencies. That's expected; it
-> makes the Brewfile a faithful snapshot of the machine.
+> **Note:** `brew bundle dump` records only top-level packages — the equivalent
+> of `brew leaves` — not the dependencies they pull in. (On this machine that's
+> ~10 entries out of ~41 installed formulae.) So the `Brewfile` stays a list of
+> things you actually asked for, and Homebrew re-resolves dependencies at install
+> time on the target machine.
 
 ### Install the Brewfile on another machine
 

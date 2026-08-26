@@ -16,6 +16,8 @@ brew "node@24", link: true
 brew "pnpm"
 # Pretty, minimal and fast ZSH prompt
 brew "pure"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
 # Terminal multiplexer
 brew "tmux"
 # Desktop password and login vault

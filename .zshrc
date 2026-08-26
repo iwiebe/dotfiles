@@ -3,11 +3,11 @@ fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
 prompt pure
 
-alias gam="/Users/iwiebe/bin/gam7/gam"
-alias vp="cd /Users/iwiebe/src/GitHub/village-portal"
-alias iwd="cd /Users/iwiebe/src/GitHub/iw-docker/ansible"
-alias iwd-down='ansible-playbook -i /Users/iwiebe/src/GitHub/iw-docker/ansible/inventories/prod/hosts.yml /Users/iwiebe/src/GitHub/iw-docker/ansible/playbooks/miner-control.yml -e "start_group=none stop_group=night_miners"'
-alias iwd-up='ansible-playbook -i /Users/iwiebe/src/GitHub/iw-docker/ansible/inventories/prod/hosts.yml /Users/iwiebe/src/GitHub/iw-docker/ansible/playbooks/miner-control.yml -e "start_group=night_miners stop_group=none"'
+alias gam="$HOME/bin/gam7/gam"
+alias vp="cd $HOME/src/GitHub/village-portal"
+alias iwd="cd $HOME/src/GitHub/iw-docker/ansible"
+alias iwd-down='ansible-playbook -i $HOME/src/GitHub/iw-docker/ansible/inventories/prod/hosts.yml $HOME/src/GitHub/iw-docker/ansible/playbooks/miner-control.yml -e "start_group=none stop_group=night_miners"'
+alias iwd-up='ansible-playbook -i $HOME/src/GitHub/iw-docker/ansible/inventories/prod/hosts.yml $HOME/src/GitHub/iw-docker/ansible/playbooks/miner-control.yml -e "start_group=night_miners stop_group=none"'
 
 
 #alias ansible="docker run -ti --rm -v ~/.ssh:/root/.ssh -v $(pwd):/apps -w /apps alpine/ansible ansible"
@@ -18,7 +18,7 @@ export PATH=$PATH:~/src/Qt/Tools/CMake
 export PATH=$PATH:~/src/Qt/Tools/ninja
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/iwiebe/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 # IDE/Nuxt Dev Tools Connection

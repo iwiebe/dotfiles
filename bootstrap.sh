@@ -15,6 +15,17 @@ if ! command -v brew &>/dev/null; then
   fi
 fi
 
+echo "==> Ensuring Homebrew is on the PATH for new shells..."
+# .zshrc calls `brew --prefix` on line 2 (for pure's fpath), but Homebrew's
+# installer only *prints* the shellenv line — it never writes it. Without this,
+# every new shell on a fresh machine starts with brew missing from PATH.
+if ! grep -qsF 'brew shellenv' "$HOME/.zprofile"; then
+  printf '\n%s\n' "eval \"\$($(command -v brew) shellenv)\"" >> "$HOME/.zprofile"
+  echo "Added brew shellenv to ~/.zprofile"
+else
+  echo "~/.zprofile already loads brew shellenv — left untouched"
+fi
+
 echo "==> Installing GNU Stow..."
 brew install stow
 
