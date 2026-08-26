@@ -8,6 +8,8 @@ brew "googleworkspace-cli"
 brew "herdr", restart_service: :changed
 # Lightweight and flexible command-line JSON processor (required by statusline.sh)
 brew "jq"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node@24", link: true
 # Fast, disk space efficient package manager
