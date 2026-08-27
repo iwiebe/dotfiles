@@ -72,6 +72,9 @@ fi
 echo "==> Installing packages from Brewfile..."
 brew bundle install --file="$DOTFILES_DIR/Brewfile"
 
+echo "==> Configuring git-lfs..."
+git lfs install
+
 echo "==> Installing global agent skills..."
 # Non-fatal: a failing/unreachable skill repo shouldn't abort the whole setup.
 "$DOTFILES_DIR/skills.sh" || echo "warning: some skills failed to install (see above)"

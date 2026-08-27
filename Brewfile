@@ -2,6 +2,8 @@
 brew "ansible@13", link: true
 # GitHub command-line tool
 brew "gh"
+# Git extension for versioning large files
+brew "git-lfs"
 # CLI for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more
 brew "googleworkspace-cli"
 # Agent multiplexer that lives in your terminal
