@@ -46,6 +46,8 @@ cask "obsidian"
 cask "raycast"
 # Native GUI tool for relational databases
 cask "tableplus"
+# Mesh VPN built on WireGuard
+cask "tailscale-app"
 # Multimedia player
 cask "vlc"
 # Multiplayer code editor
