@@ -53,7 +53,13 @@ gwc() {
 gwr() {
   local branch="$1"
   local dir="$HOME/src/GitHub/worktrees/$branch"
-  cd "$HOME/src/GitHub/village-portal" && git worktree remove "$dir"
+  cd "$HOME/src/GitHub/village-portal" || return 1
+  # --force so a dirty/ignored-file tree (node_modules, .nuxt, .env) still
+  # unregisters; then rm -rf sweeps the gitignored leftovers that make git's
+  # own rmdir fail with "Directory not empty"; prune cleans stale metadata.
+  git worktree remove --force "$dir" 2>/dev/null
+  rm -rf "$dir"
+  git worktree prune
 }
 
 alias gwl="git worktree list"
