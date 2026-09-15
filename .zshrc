@@ -36,7 +36,12 @@ alias npm="pnpm"
 gwa() {
   local branch="$1"
   local dir="$HOME/src/GitHub/worktrees/$branch"
-  git worktree add -b "$branch" "$dir" && cd "$dir"
+  local src; src="$(git rev-parse --show-toplevel)" || return 1
+  git worktree add -b "$branch" "$dir" || return 1
+  # .env.e2e is gitignored, so it isn't carried into the new worktree — copy it
+  # over from the source repo so e2e tests work out of the box.
+  [ -f "$src/.env.e2e" ] && cp "$src/.env.e2e" "$dir/.env.e2e"
+  cd "$dir"
 }
 
 gwc() {

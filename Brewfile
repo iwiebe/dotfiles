@@ -46,6 +46,8 @@ cask "jordanbaird-ice"
 cask "obsidian"
 # Control your tools with a few keystrokes
 cask "raycast"
+# Team communication and collaboration software
+cask "slack"
 # Native GUI tool for relational databases
 cask "tableplus"
 # Mesh VPN built on WireGuard
