@@ -42,6 +42,8 @@ cask "google-chrome"
 cask "grandperspective"
 # Menu bar manager
 cask "jordanbaird-ice"
+# Web browser focused on privacy and on minimizing tracking and fingerprinting
+cask "mullvad-browser"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Control your tools with a few keystrokes
@@ -52,6 +54,8 @@ cask "slack"
 cask "tableplus"
 # Mesh VPN built on WireGuard
 cask "tailscale-app"
+# Virtual machines UI using QEMU
+cask "utm"
 # Multimedia player
 cask "vlc"
 # Multiplayer code editor
