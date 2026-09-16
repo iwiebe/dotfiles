@@ -22,6 +22,8 @@ brew "pure"
 brew "stow"
 # Terminal multiplexer
 brew "tmux"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
 # Desktop password and login vault
 cask "bitwarden"
 # Anthropic's official Claude AI desktop app
