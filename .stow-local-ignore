@@ -11,6 +11,7 @@
 
 # Repo docs, manifests, and provisioning scripts — not dotfiles, keep out of $HOME
 README.*
+^/CLAUDE\.md$
 Brewfile
 Pluginfile
 Skillfile
