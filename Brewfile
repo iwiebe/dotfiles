@@ -1,5 +1,7 @@
 # Automate deployment, configuration, and upgrading
 brew "ansible@13", link: true
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # GitHub command-line tool
 brew "gh"
 # Git extension for versioning large files
