@@ -4,20 +4,21 @@ exec 2>/dev/null
 
 input=$(cat)
 
-tab=$(printf '\t')
+# NOTE: delimiter must NOT be whitespace. Bash treats space/tab/newline in IFS as
+# "IFS whitespace": runs of them collapse into one delimiter and empty fields vanish,
+# which silently shifts every later field left. \x1f (unit separator) preserves empties.
+us=$(printf '\037')
 parsed=$(printf '%s' "$input" | jq -r '[
-  ((.context_window.current_usage.input_tokens // 0)
-   + (.context_window.current_usage.cache_creation_input_tokens // 0)
-   + (.context_window.current_usage.cache_read_input_tokens // 0) | tostring),
+  (.context_window.total_input_tokens // 0 | tostring),
   (.context_window.context_window_size // 0 | tostring),
+  (.context_window.used_percentage // 0 | round | tostring),
   (.rate_limits.five_hour.used_percentage // null | if . then (. | round | tostring) else "null" end),
   (.rate_limits.five_hour.resets_at // "" | tostring),
   (.rate_limits.seven_day.used_percentage // null | if . then (. | round | tostring) else "null" end),
   (.rate_limits.seven_day.resets_at // "" | tostring)
+] | join("\u001f")')
 
-] | @tsv')
-
-IFS="$tab" read -r used_tokens window_size five_pct five_reset seven_pct seven_reset <<EOF
+IFS="$us" read -r used_tokens window_size ctx_pct five_pct five_reset seven_pct seven_reset <<EOF
 $parsed
 EOF
 
@@ -65,10 +66,7 @@ format_tokens() {
 }
 
 # Context %
-ctx_pct=0
-if [ "$window_size" -gt 0 ] 2>/dev/null; then
-  ctx_pct=$(awk -v u="$used_tokens" -v t="$window_size" 'BEGIN { printf "%d", (u/t)*100 }')
-fi
+[ -n "$ctx_pct" ] || ctx_pct=0
 if [ "$ctx_pct" -ge 85 ] 2>/dev/null; then
   ctx_color="$RED"
 elif [ "$ctx_pct" -ge 70 ] 2>/dev/null; then
