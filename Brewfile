@@ -1,5 +1,7 @@
 # Automate deployment, configuration, and upgrading
 brew "ansible@13", link: true
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
 # Isolated development environments using Docker
