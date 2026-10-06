@@ -1,5 +1,9 @@
 # Automate deployment, configuration, and upgrading
 brew "ansible@13", link: true
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # GitHub command-line tool
