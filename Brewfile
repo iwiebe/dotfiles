@@ -14,6 +14,8 @@ brew "herdr", restart_service: :changed
 brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Mac App Store command-line interface
+brew "mas"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node@24", link: true
 # Fast, disk space efficient package manager
