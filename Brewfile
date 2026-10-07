@@ -4,6 +4,8 @@ brew "ansible@13", link: true
 brew "colima"
 # Pack, ship and run any application as a lightweight container
 brew "docker"
+# Docker CLI plugin for extended build capabilities with BuildKit
+brew "docker-buildx"
 # Isolated development environments using Docker
 brew "docker-compose"
 # Play, record, convert, and stream select audio and video codecs
