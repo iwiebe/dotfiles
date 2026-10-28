@@ -19,6 +19,7 @@ bootstrap\.sh
 optional\.sh
 plugins\.sh
 skills\.sh
+docker-volume-backup-bootstrap\.sh
 
 # App-managed: bootstrap cp-seeds this instead of symlinking (plugins.sh / the
 # claude CLI rewrite it in place), so it must never become a repo symlink.
