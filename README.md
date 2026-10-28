@@ -228,6 +228,25 @@ sudo xcode-select -s /Applications/Xcode.app
 xcodebuild -runFirstLaunch
 ```
 
+## Docker volume backups (Linux servers)
+
+`docker-volume-backup-bootstrap.sh` sets up nightly rsync-over-ssh backups of a
+Rocky/RHEL host's Docker volumes. It isn't stowed — run it on the server as root:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/iwiebe/dotfiles/main/docker-volume-backup-bootstrap.sh | sudo bash
+```
+
+It prompts (via the terminal) for the ssh key, source dir, remote `user@host`,
+target dir, exclude pattern and cron schedule, checks it can reach the target,
+then writes `/usr/local/bin/backup-<host>-docker-volumes.sh`, installs a root
+cron entry and offers a test run. Logs go to
+`/var/log/backup-<host>-docker-volumes.log`. Re-running regenerates the script
+and replaces the cron entry rather than adding a second one.
+
+Needs `rsync`, `openssh-clients`, `cronie` and `util-linux` (`flock`); the
+script tells you if any are missing.
+
 ## Adding a new dotfile
 
 1. Move the real file into the repo, preserving its path relative to `~`:

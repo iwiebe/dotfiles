@@ -9,7 +9,7 @@
 # cron entry replaced rather than duplicated.
 #
 #   sudo ./docker-volume-backup-bootstrap.sh
-#   curl -fsSL <raw url> | sudo bash        # prompts read from the terminal
+#   curl -fsSL https://raw.githubusercontent.com/iwiebe/dotfiles/main/docker-volume-backup-bootstrap.sh | sudo bash
 #
 set -euo pipefail
 
