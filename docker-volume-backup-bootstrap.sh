@@ -84,7 +84,8 @@ echo
 SSH_OPTS=(-i "$SSH_KEY" -o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=10)
 echo
 echo "==> Checking ssh access and target directory..."
-if ssh "${SSH_OPTS[@]}" "$REMOTE" "test -d $(printf '%q' "$TARGET")"; then
+# -n: under `curl | bash` the script itself is on stdin; without it ssh eats the rest
+if ssh -n "${SSH_OPTS[@]}" "$REMOTE" "test -d $(printf '%q' "$TARGET")"; then
   echo "OK"
 else
   echo "Could not ssh to $REMOTE with $SSH_KEY, or $TARGET doesn't exist there." >&2
