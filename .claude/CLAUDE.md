@@ -16,8 +16,8 @@ Personal defaults across all projects. A project-level CLAUDE.md overrides these
 - Don't commit directly to `main` on shared repos without asking — prefer a branch.
 
 ## Preferences
-- **Package manager: pnpm** (via corepack). Don't use `npm`/`yarn` unless a repo
-  clearly requires it.
+- **Package manager: pnpm** (installed via Homebrew). Don't use `npm`/`yarn`
+  unless a repo clearly requires it.
 - Match the surrounding code's conventions; don't add new tools or dependencies
   without asking. Confirm before anything destructive or outward-facing.
 
