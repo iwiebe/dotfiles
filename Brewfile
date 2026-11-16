@@ -30,6 +30,8 @@ brew "node@24", link: true
 brew "pnpm"
 # Pretty, minimal and fast ZSH prompt
 brew "pure"
+# Rsync for cloud storage
+brew "rclone"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Terminal multiplexer
